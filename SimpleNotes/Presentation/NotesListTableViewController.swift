@@ -39,6 +39,8 @@ extension NotesListTableViewController {
     }
     
     @objc func addNewNote() {
-        print("Button tap")
+        let newNoteVC = NewNoteViewController()
+        newNoteVC.modalPresentationStyle = .fullScreen
+        present(newNoteVC, animated: true)
     }
 }
