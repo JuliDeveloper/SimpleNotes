@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		257D9C202996936300087A9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D9C1F2996936300087A9F /* AppDelegate.swift */; };
 		257D9C222996936300087A9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D9C212996936300087A9F /* SceneDelegate.swift */; };
-		257D9C242996936300087A9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D9C232996936300087A9F /* ViewController.swift */; };
 		257D9C2A2996936300087A9F /* SimpleNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 257D9C282996936300087A9F /* SimpleNotes.xcdatamodeld */; };
 		257D9C2C2996936400087A9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 257D9C2B2996936400087A9F /* Assets.xcassets */; };
 		257D9C2F2996936400087A9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 257D9C2D2996936400087A9F /* LaunchScreen.storyboard */; };
+		257D9C3A2997F3EE00087A9F /* NotesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D9C392997F3EE00087A9F /* NotesListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		257D9C1C2996936300087A9F /* SimpleNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		257D9C1F2996936300087A9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		257D9C212996936300087A9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		257D9C232996936300087A9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		257D9C292996936300087A9F /* SimpleNotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleNotes.xcdatamodel; sourceTree = "<group>"; };
 		257D9C2B2996936400087A9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		257D9C2E2996936400087A9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		257D9C302996936400087A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		257D9C392997F3EE00087A9F /* NotesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 		257D9C382996947E00087A9F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				257D9C232996936300087A9F /* ViewController.swift */,
+				257D9C392997F3EE00087A9F /* NotesListTableViewController.swift */,
 				257D9C2D2996936400087A9F /* LaunchScreen.storyboard */,
 			);
 			path = Presentation;
@@ -161,8 +161,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				257D9C242996936300087A9F /* ViewController.swift in Sources */,
 				257D9C202996936300087A9F /* AppDelegate.swift in Sources */,
+				257D9C3A2997F3EE00087A9F /* NotesListTableViewController.swift in Sources */,
 				257D9C222996936300087A9F /* SceneDelegate.swift in Sources */,
 				257D9C2A2996936300087A9F /* SimpleNotes.xcdatamodeld in Sources */,
 			);
