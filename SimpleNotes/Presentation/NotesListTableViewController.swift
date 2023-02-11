@@ -35,7 +35,7 @@ extension NotesListTableViewController {
         title = "Ваши заметки"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewNote))
-        navigationController?.navigationBar.tintColor = .red
+        navigationController?.navigationBar.tintColor = .mainColor
     }
     
     @objc func addNewNote() {

@@ -1,10 +1,11 @@
 import UIKit
 
-final class NewNoteViewController: UIViewController {
+final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Отмена", for: .normal)
-        button.tintColor = .red
+        button.titleLabel?.font = .systemFont(ofSize: 15)
+        button.tintColor = .mainColor
         button.addTarget(self, action: #selector(didTapCancel), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -13,7 +14,8 @@ final class NewNoteViewController: UIViewController {
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Cохранить", for: .normal)
-        button.tintColor = .blue
+        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
+        button.tintColor = .mainColor
         button.addTarget(self, action: #selector(didTapSave), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -23,7 +25,7 @@ final class NewNoteViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "Заголовок заметки"
         textField.layer.borderWidth = 0.5
-        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.borderColor = UIColor.mainColor.cgColor
         textField.layer.cornerRadius = 8
         
         let spacer = UIView()
@@ -38,7 +40,7 @@ final class NewNoteViewController: UIViewController {
     private let noteTextView: UITextView = {
         let textView = UITextView()
         textView.layer.borderWidth = 0.5
-        textView.layer.borderColor = UIColor.red.cgColor
+        textView.layer.borderColor = UIColor.mainColor.cgColor
         textView.layer.cornerRadius = 8
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -47,10 +49,11 @@ final class NewNoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        noteTitleTextField.delegate = self
+        noteTextView.delegate = self
         config()
         addSubviews()
         setupConstraints()
-        
     }
     
     private func config() {
