@@ -14,6 +14,7 @@
 		257D9C2F2996936400087A9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 257D9C2D2996936400087A9F /* LaunchScreen.storyboard */; };
 		257D9C3A2997F3EE00087A9F /* NotesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D9C392997F3EE00087A9F /* NotesListTableViewController.swift */; };
 		257D9C3E2997FBA800087A9F /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D9C3D2997FBA800087A9F /* NewNoteViewController.swift */; };
+		257D9C422998113400087A9F /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D9C412998113400087A9F /* Extension + UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		257D9C302996936400087A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		257D9C392997F3EE00087A9F /* NotesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListTableViewController.swift; sourceTree = "<group>"; };
 		257D9C3D2997FBA800087A9F /* NewNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
+		257D9C412998113400087A9F /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				257D9C2B2996936400087A9F /* Assets.xcassets */,
+				257D9C412998113400087A9F /* Extension + UIColor.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				257D9C3A2997F3EE00087A9F /* NotesListTableViewController.swift in Sources */,
 				257D9C222996936300087A9F /* SceneDelegate.swift in Sources */,
 				257D9C2A2996936300087A9F /* SimpleNotes.xcdatamodeld in Sources */,
+				257D9C422998113400087A9F /* Extension + UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +308,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DWMGJ928Y5;
@@ -336,7 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DWMGJ928Y5;
