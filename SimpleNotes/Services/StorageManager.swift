@@ -33,9 +33,10 @@ class StorageManager {
         }
     }
     
-    func save(note: Note, _ completion: (Note) -> Void) {
+    func save(noteTitle: String?, noteBody: String?) {
         let note = Note(context: viewContext)
-        completion(note)
+        note.title = noteTitle
+        note.body = noteBody
         saveContext()
     }
     
