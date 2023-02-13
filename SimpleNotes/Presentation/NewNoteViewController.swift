@@ -46,6 +46,7 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         return textView
     }()
     
+    var note: Note?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +134,10 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     }
     
     @objc func didTapSave() {
-        print("save")
+        if note == nil {
+            StorageManager.shared.save(noteTitle: noteTitleTextField.text ?? "", noteBody: noteTextView.text ?? "")
+        } else {
+            StorageManager.shared.edit(note: note ?? Note(), newTitle: noteTitleTextField.text ?? "", newBody: noteTextView.text ?? "")
+        }
     }
 }
