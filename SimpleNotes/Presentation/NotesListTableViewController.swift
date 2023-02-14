@@ -24,18 +24,10 @@ class NotesListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        
-        let note = notes[indexPath.row]
-        
-        if #available(iOS 14.0, *) {
-            var content = cell.defaultContentConfiguration()
-            content.text = note.title
-            content.secondaryText = note.body
-            cell.contentConfiguration = content
-        } else {
-            cell.textLabel?.text = note.title
-        }
-        
+        guard let noteCell = cell as? NoteTableViewCell else { return UITableViewCell() }
+                
+        noteCell.configUI(for: noteCell, from: notes, with: indexPath)
+
         return cell
     }
     
@@ -77,7 +69,7 @@ extension NotesListTableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(
-            UITableViewCell.self,
+            NoteTableViewCell.self,
             forCellReuseIdentifier: cellIdentifier
         )
     }
