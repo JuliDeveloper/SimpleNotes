@@ -46,6 +46,7 @@ class NotesListTableViewController: UITableViewController {
         newNoteVC.note = note
         
         newNoteVC.modalPresentationStyle = .fullScreen
+        newNoteVC.delegate = self
         present(newNoteVC, animated: true)
     }
     
