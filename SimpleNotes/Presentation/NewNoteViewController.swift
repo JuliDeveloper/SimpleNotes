@@ -47,18 +47,25 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     }()
     
     var note: Note?
+    var delegate: ReloadDataTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        noteTitleTextField.delegate = self
-        noteTextView.delegate = self
-        config()
+        setupViewController()
         addSubviews()
         setupConstraints()
     }
     
-    private func config() {
+    private func setupViewController() {
         view.backgroundColor = .white
+        
+        noteTitleTextField.delegate = self
+        noteTextView.delegate = self
+        
+        if note != nil {
+            noteTitleTextField.text = note?.title
+            noteTextView.text = note?.body
+        }
     }
     
     private func addSubviews() {
@@ -135,9 +142,18 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     
     @objc func didTapSave() {
         if note == nil {
-            StorageManager.shared.save(noteTitle: noteTitleTextField.text ?? "", noteBody: noteTextView.text ?? "")
+            StorageManager.shared.save(
+                noteTitle: noteTitleTextField.text ?? "",
+                noteBody: noteTextView.text ?? ""
+            )
         } else {
-            StorageManager.shared.edit(note: note ?? Note(), newTitle: noteTitleTextField.text ?? "", newBody: noteTextView.text ?? "")
+            StorageManager.shared.edit(
+                note: note ?? Note(), newTitle: noteTitleTextField.text ?? "",
+                newBody: noteTextView.text ?? ""
+            )
         }
+        
+        delegate?.reloadData()
+        dismiss(animated: true)
     }
 }
