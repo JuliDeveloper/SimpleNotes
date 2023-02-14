@@ -21,7 +21,7 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         return button
     }()
     
-    private let noteTitleTextField: UITextField = {
+    private lazy var noteTitleTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Заголовок заметки"
         textField.layer.borderWidth = 0.5
@@ -34,6 +34,7 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         textField.leftViewMode = .always
         
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.addTarget(self, action: #selector(changeStateSaveButton), for: .editingChanged)
         return textField
     }()
     
@@ -62,7 +63,10 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         noteTitleTextField.delegate = self
         noteTextView.delegate = self
         
+        saveButton.isEnabled = false
+        
         if note != nil {
+            saveButton.isEnabled = true
             noteTitleTextField.text = note?.title
             noteTextView.text = note?.body
         }
@@ -136,11 +140,19 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         ])
     }
     
-    @objc func didTapCancel() {
+    @objc private func changeStateSaveButton() {
+        if noteTitleTextField.text?.isEmpty == false {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
+    }
+    
+    @objc private func didTapCancel() {
         dismiss(animated: true)
     }
     
-    @objc func didTapSave() {
+    @objc private func didTapSave() {
         if note == nil {
             StorageManager.shared.save(
                 noteTitle: noteTitleTextField.text ?? "",
