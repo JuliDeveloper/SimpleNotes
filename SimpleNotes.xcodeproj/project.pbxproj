@@ -20,6 +20,7 @@
 		258AE933299D07C4007FDD24 /* NotesListTableViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE932299D07C4007FDD24 /* NotesListTableViewPresenter.swift */; };
 		258AE939299D0D88007FDD24 /* NewNoteViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE938299D0D88007FDD24 /* NewNoteViewPresenter.swift */; };
 		258AE93C299D3ADB007FDD24 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE93B299D3ADB007FDD24 /* Extension + UIViewController.swift */; };
+		258AE946299D6D74007FDD24 /* ExampleNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE945299D6D74007FDD24 /* ExampleNotes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		258AE932299D07C4007FDD24 /* NotesListTableViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListTableViewPresenter.swift; sourceTree = "<group>"; };
 		258AE938299D0D88007FDD24 /* NewNoteViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewPresenter.swift; sourceTree = "<group>"; };
 		258AE93B299D3ADB007FDD24 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
+		258AE945299D6D74007FDD24 /* ExampleNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleNotes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			children = (
 				258AE92D299A496D007FDD24 /* StorageManager.swift */,
 				257D9C282996936300087A9F /* SimpleNotes.xcdatamodeld */,
+				258AE945299D6D74007FDD24 /* ExampleNotes.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			files = (
 				258AE93C299D3ADB007FDD24 /* Extension + UIViewController.swift in Sources */,
 				257D9C3E2997FBA800087A9F /* NewNoteViewController.swift in Sources */,
+				258AE946299D6D74007FDD24 /* ExampleNotes.swift in Sources */,
 				257D9C202996936300087A9F /* AppDelegate.swift in Sources */,
 				257D9C3A2997F3EE00087A9F /* NotesListTableViewController.swift in Sources */,
 				258AE930299BD790007FDD24 /* NoteTableViewCell.swift in Sources */,

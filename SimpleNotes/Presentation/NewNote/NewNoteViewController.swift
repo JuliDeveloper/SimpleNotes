@@ -87,6 +87,7 @@ final class NewNoteViewController: UIViewController, NewNoteViewControllerProtoc
     }()
     
     var note: Note?
+    var exampleNote: ExampleNote?
     var delegate: ReloadDataTableViewControllerDelegate?
     var presenter: NewNoteViewPresenterProtocol?
     
@@ -152,6 +153,9 @@ extension NewNoteViewController {
             saveButton.isEnabled = true
             noteTitleTextField.text = note?.title
             noteBodyTextView.text = note?.body
+        } else {
+            noteTitleTextField.text = exampleNote?.title
+            noteBodyTextView.text = exampleNote?.body
         }
     }
     
