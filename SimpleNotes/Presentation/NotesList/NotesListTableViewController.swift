@@ -128,12 +128,18 @@ extension NotesListTableViewController {
             ) { _ in
                 if !self.notes.isEmpty {
                     let note = self.notes[indexPath.row]
-                    self.notes.remove(at: indexPath.row)
                     self.presenter?.delete(note: note)
+                    if self.notes.count == 1 {
+                        self.notes.remove(at: indexPath.row)
+                        self.tableView.reloadData()
+                    } else {
+                        self.notes.remove(at: indexPath.row)
+                        self.tableView.deleteRows(at: [indexPath], with: .none)
+                    }
                 } else {
                     self.exampleNotes.remove(at: indexPath.row)
+                    self.tableView.deleteRows(at: [indexPath], with: .none)
                 }
-                self.tableView.deleteRows(at: [indexPath], with: .none)
             }
         }
         actionDelete.backgroundColor = .red
