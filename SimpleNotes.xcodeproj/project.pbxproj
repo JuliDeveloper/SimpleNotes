@@ -17,6 +17,7 @@
 		257D9C422998113400087A9F /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D9C412998113400087A9F /* Extension + UIColor.swift */; };
 		258AE92E299A496D007FDD24 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE92D299A496D007FDD24 /* StorageManager.swift */; };
 		258AE930299BD790007FDD24 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE92F299BD790007FDD24 /* NoteTableViewCell.swift */; };
+		258AE933299D07C4007FDD24 /* NotesListTableViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE932299D07C4007FDD24 /* NotesListTableViewPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		257D9C412998113400087A9F /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 		258AE92D299A496D007FDD24 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		258AE92F299BD790007FDD24 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		258AE932299D07C4007FDD24 /* NotesListTableViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListTableViewPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +96,7 @@
 		257D9C382996947E00087A9F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				257D9C392997F3EE00087A9F /* NotesListTableViewController.swift */,
-				258AE92F299BD790007FDD24 /* NoteTableViewCell.swift */,
+				258AE931299D0784007FDD24 /* NotesList */,
 				257D9C3D2997FBA800087A9F /* NewNoteViewController.swift */,
 				257D9C2D2996936400087A9F /* LaunchScreen.storyboard */,
 			);
@@ -109,6 +110,24 @@
 				257D9C282996936300087A9F /* SimpleNotes.xcdatamodeld */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		258AE931299D0784007FDD24 /* NotesList */ = {
+			isa = PBXGroup;
+			children = (
+				258AE936299D0B8F007FDD24 /* Views */,
+				257D9C392997F3EE00087A9F /* NotesListTableViewController.swift */,
+				258AE932299D07C4007FDD24 /* NotesListTableViewPresenter.swift */,
+			);
+			path = NotesList;
+			sourceTree = "<group>";
+		};
+		258AE936299D0B8F007FDD24 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				258AE92F299BD790007FDD24 /* NoteTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +207,7 @@
 				258AE92E299A496D007FDD24 /* StorageManager.swift in Sources */,
 				257D9C222996936300087A9F /* SceneDelegate.swift in Sources */,
 				257D9C2A2996936300087A9F /* SimpleNotes.xcdatamodeld in Sources */,
+				258AE933299D07C4007FDD24 /* NotesListTableViewPresenter.swift in Sources */,
 				257D9C422998113400087A9F /* Extension + UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,17 +2,23 @@ import UIKit
 
 private let cellIdentifier = "noteCell"
 
+protocol NotesListTableViewControllerProtocol: AnyObject {
+    var presenter: NotesListTableViewPresenterProtocol? { get set }
+}
+
 protocol ReloadDataTableViewControllerDelegate {
     func reloadData()
 }
 
-class NotesListTableViewController: UITableViewController {
+class NotesListTableViewController: UITableViewController, NotesListTableViewControllerProtocol {
     
     private var notes: [Note] = []
-    private var storage = StorageManager.shared
+    var presenter: NotesListTableViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = NotesListTableViewPresenter(view: self)
+        
         setupTableView()
         configNavigationBar()
         fetchNotes()
@@ -47,21 +53,16 @@ class NotesListTableViewController: UITableViewController {
         if editingStyle == .delete {
             notes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            storage.delete(note: note)
+            presenter?.delete(note: note)
         }
     }
 }
 
 extension NotesListTableViewController {
     private func fetchNotes() {
-        storage.fetchNotes { [weak self] result in
+        presenter?.fetchData { [weak self] notesList in
             guard let self = self else { return }
-            switch result {
-            case .success(let notesList):
-                self.notes = notesList
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+            self.notes = notesList
         }
     }
     
