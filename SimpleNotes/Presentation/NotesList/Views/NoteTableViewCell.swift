@@ -3,7 +3,7 @@ import UIKit
 final class NoteTableViewCell: UITableViewCell {
     
     //MARK: - Properties
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         label.textColor = .black
@@ -11,7 +11,7 @@ final class NoteTableViewCell: UITableViewCell {
         return label
     }()
     
-    let subtitleLabel: UILabel = {
+    private let subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         label.textColor = .gray
@@ -41,10 +41,22 @@ final class NoteTableViewCell: UITableViewCell {
         addSubview(stack)
         
         NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            stack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+            stack.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: 20
+            ),
+            stack.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: 8
+            ),
+            stack.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -20
+            ),
+            stack.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -8
+            )
         ])
     }
 }

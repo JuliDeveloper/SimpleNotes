@@ -12,7 +12,11 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         button.setTitle("Отмена", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15)
         button.tintColor = .mainColor
-        button.addTarget(self, action: #selector(didTapCancel), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(didTapCancel),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -21,7 +25,11 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         button.setTitle("Cохранить", for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 15)
         button.tintColor = .mainColor
-        button.addTarget(self, action: #selector(didTapSave), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(didTapSave),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -57,11 +65,15 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         textField.leftViewMode = .always
         
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.addTarget(self, action: #selector(changeStateSaveButton), for: .editingChanged)
+        textField.addTarget(
+            self,
+            action: #selector(changeStateSaveButton),
+            for: .editingChanged
+        )
         return textField
     }()
     
-    private let noteTextView: UITextView = {
+    private let noteBodyTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
         textView.textColor = .black
@@ -99,7 +111,7 @@ extension NewNoteViewController {
         topStackView.addArrangedSubview(saveButton)
         
         noteTitleTextField.delegate = self
-        noteTextView.delegate = self
+        noteBodyTextView.delegate = self
         
         saveButton.isEnabled = false
         
@@ -107,14 +119,14 @@ extension NewNoteViewController {
             titleLabel.text = "Редактирование"
             saveButton.isEnabled = true
             noteTitleTextField.text = note?.title
-            noteTextView.text = note?.body
+            noteBodyTextView.text = note?.body
         }
     }
     
     private func addSubviews() {
         view.addSubview(topStackView)
         view.addSubview(noteTitleTextField)
-        view.addSubview(noteTextView)
+        view.addSubview(noteBodyTextView)
     }
 
     private func setupConstraints() {
@@ -151,19 +163,19 @@ extension NewNoteViewController {
         ])
         
         NSLayoutConstraint.activate([
-            noteTextView.leadingAnchor.constraint(
+            noteBodyTextView.leadingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.leadingAnchor,
                 constant: 16
             ),
-            noteTextView.trailingAnchor.constraint(
+            noteBodyTextView.trailingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                 constant: -16
             ),
-            noteTextView.topAnchor.constraint(
+            noteBodyTextView.topAnchor.constraint(
                 equalTo: noteTitleTextField.bottomAnchor,
                 constant: 20
             ),
-            noteTextView.bottomAnchor.constraint(
+            noteBodyTextView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                 constant: -20
             )
@@ -192,13 +204,13 @@ extension NewNoteViewController {
         if note == nil {
             presenter?.save(
                 noteTitle: noteTitleTextField.text ?? "",
-                noteBody: noteTextView.text ?? ""
+                noteBody: noteBodyTextView.text ?? ""
             )
         } else {
             presenter?.edit(
                 note: note ?? Note(),
                 newTitle: noteTitleTextField.text ?? "",
-                newBody: noteTextView.text ?? ""
+                newBody: noteBodyTextView.text ?? ""
             )
         }
         

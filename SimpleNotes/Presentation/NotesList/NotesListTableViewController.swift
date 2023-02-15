@@ -35,8 +35,13 @@ extension NotesListTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        guard let noteCell = cell as? NoteTableViewCell else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: cellIdentifier, for: indexPath
+        )
+        
+        guard let noteCell = cell as? NoteTableViewCell else {
+            return UITableViewCell()
+        }
                 
         noteCell.configUI(for: noteCell, from: notes, with: indexPath)
 
@@ -82,17 +87,26 @@ extension NotesListTableViewController {
     private func configNavigationBar() {
         title = "Ваши заметки"
         navigationController?.navigationBar.barTintColor = .lightMainColor
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.black
+        ]
 
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewNote))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addNewNote)
+        )
         navigationController?.navigationBar.tintColor = .mainColor
     }
     
     private func createSwipeAction(at indexPath: IndexPath) -> [UIContextualAction] {
         let note = notes[indexPath.row]
         
-        let actionDelete = UIContextualAction(style: .normal, title: "Delete") { [weak self]  (_, _, _) in
+        let actionDelete = UIContextualAction(
+            style: .normal,
+            title: "Delete"
+        ) { [weak self]  (_, _, _) in
             guard let self = self else { return }
             self.showAlert(
                 title: "Предупреждение",
@@ -106,14 +120,23 @@ extension NotesListTableViewController {
         actionDelete.backgroundColor = .red
         actionDelete.image = UIImage(systemName: "trash.fill")
         
-        let actionFavorite = UIContextualAction(style: .normal, title: "Favorite") { (_, _, completion) in
+        let actionFavorite = UIContextualAction(
+            style: .normal,
+            title: "Favorite"
+        ) { [weak self] (_, _, completion) in
+            guard let self = self else { return }
             note.isFavorite = !note.isFavorite
-            self.presenter?.updateFavoriteState(note: note, newState: note.isFavorite)
+            self.presenter?.updateFavoriteState(
+                note: note,
+                newState: note.isFavorite
+            )
             self.notes[indexPath.row] = note
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
             completion(true)
         }
-        actionFavorite.backgroundColor = note.isFavorite ? .mainColor : .systemGray
+        actionFavorite.backgroundColor = note.isFavorite ?
+            .mainColor :
+            .systemGray
         actionFavorite.image = note.isFavorite ?
             UIImage(systemName: "heart.fill") :
             UIImage(systemName: "heart")
