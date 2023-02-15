@@ -2,6 +2,7 @@ import UIKit
 
 private let cellIdentifier = "noteCell"
 
+//MARK: - Protocols
 protocol NotesListTableViewControllerProtocol: AnyObject {
     var presenter: NotesListTableViewPresenterProtocol? { get set }
 }
@@ -10,11 +11,13 @@ protocol ReloadDataTableViewControllerDelegate {
     func reloadData()
 }
 
-class NotesListTableViewController: UITableViewController, NotesListTableViewControllerProtocol {
+final class NotesListTableViewController: UITableViewController, NotesListTableViewControllerProtocol {
     
+    //MARK: - Properties
     private var notes: [Note] = []
     var presenter: NotesListTableViewPresenterProtocol?
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = NotesListTableViewPresenter(view: self)
@@ -23,7 +26,10 @@ class NotesListTableViewController: UITableViewController, NotesListTableViewCon
         configNavigationBar()
         fetchNotes()
     }
-    
+}
+
+//MARK: - UITableViewDataSource and UITableViewDelegate
+extension NotesListTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         notes.count
     }
@@ -54,6 +60,7 @@ class NotesListTableViewController: UITableViewController, NotesListTableViewCon
     }
 }
 
+//MARK: - Helpers
 extension NotesListTableViewController {
     private func fetchNotes() {
         presenter?.fetchData { [weak self] notesList in
@@ -123,6 +130,7 @@ extension NotesListTableViewController {
     }
 }
 
+//MARK: - ReloadDataTableViewControllerDelegate
 extension NotesListTableViewController: ReloadDataTableViewControllerDelegate {
     func reloadData() {
         fetchNotes()

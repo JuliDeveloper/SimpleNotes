@@ -4,7 +4,7 @@ class StorageManager {
     
     static let shared = StorageManager()
     
-    // MARK: - Core Data stack
+    //MARK: - Core Data stack
     private let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "SimpleNotes")
         container.loadPersistentStores { _, error in
@@ -21,7 +21,7 @@ class StorageManager {
         viewContext = persistentContainer.viewContext
     }
     
-    // MARK: - Metods
+    //MARK: - Metods
     func fetchNotes(_ completion: (Result<[Note], Error>) -> Void) {
         let request = Note.fetchRequest()
         
@@ -56,7 +56,7 @@ class StorageManager {
         saveContext()
     }
     
-    // MARK: - Core Data Saving support
+    //MARK: - Core Data Saving support
     func saveContext() {
         if viewContext.hasChanges {
             do {

@@ -5,6 +5,8 @@ protocol NewNoteViewControllerProtocol: AnyObject {
 }
 
 final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, NewNoteViewControllerProtocol {
+    
+    //MARK: - Properties
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Отмена", for: .normal)
@@ -76,6 +78,7 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     var delegate: ReloadDataTableViewControllerDelegate?
     var presenter: NewNoteViewPresenterProtocol?
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = NewNoteViewPresenter(view: self)
@@ -84,7 +87,10 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         addSubviews()
         setupConstraints()
     }
-    
+}
+
+//MARK: - Helpers
+extension NewNoteViewController {
     private func setupViewController() {
         view.backgroundColor = .white
         

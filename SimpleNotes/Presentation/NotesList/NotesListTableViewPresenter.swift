@@ -7,16 +7,19 @@ protocol NotesListTableViewPresenterProtocol {
     func updateFavoriteState(note: Note, newState: Bool)
 }
 
-class NotesListTableViewPresenter: NotesListTableViewPresenterProtocol {
+final class NotesListTableViewPresenter: NotesListTableViewPresenterProtocol {
     
+    //MARK: - Properties
     private var storage: StorageManager?
     weak var view: NotesListTableViewControllerProtocol?
     
+    //MARK: - Lifecycle
     init(view: NotesListTableViewControllerProtocol?, storage: StorageManager = .shared) {
         self.view = view
         self.storage = storage
     }
     
+    //MARK: - Helpers
     func fetchData(_ completion: ([Note]) -> Void) {
         storage?.fetchNotes { result in
             switch result {

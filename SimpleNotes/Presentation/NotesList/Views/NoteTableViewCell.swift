@@ -2,6 +2,7 @@ import UIKit
 
 final class NoteTableViewCell: UITableViewCell {
     
+    //MARK: - Properties
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
@@ -18,6 +19,7 @@ final class NoteTableViewCell: UITableViewCell {
         return label
     }()
     
+    //MARK: - Helpers
     func configUI(for cell: UITableViewCell, from notes: [Note], with indexPath: IndexPath) {
         backgroundColor = .white
         selectionStyle = .none
