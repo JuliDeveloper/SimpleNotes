@@ -93,7 +93,11 @@ extension NotesListTableViewController {
             forCellReuseIdentifier: cellIdentifier
         )
         
-        exampleNotes = ExampleNote.getExampleNotes()
+        exampleNotes = presenter?.getExampleNotes() ?? [ExampleNote(
+            title: "",
+            body: "",
+            isFavorite: false
+        )]
     }
     
     private func configNavigationBar() {
@@ -125,12 +129,11 @@ extension NotesListTableViewController {
                 if !self.notes.isEmpty {
                     let note = self.notes[indexPath.row]
                     self.notes.remove(at: indexPath.row)
-                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
                     self.presenter?.delete(note: note)
                 } else {
                     self.exampleNotes.remove(at: indexPath.row)
-                    self.tableView.deleteRows(at: [indexPath], with: .none)
                 }
+                self.tableView.deleteRows(at: [indexPath], with: .none)
             }
         }
         actionDelete.backgroundColor = .red
@@ -149,15 +152,13 @@ extension NotesListTableViewController {
                     newState: note.isFavorite
                 )
                 self.notes[indexPath.row] = note
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                completion(true)
             } else {
                 var exampleNote = self.exampleNotes[indexPath.row]
                 exampleNote.isFavorite = !exampleNote.isFavorite
                 self.exampleNotes[indexPath.row] = exampleNote
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                completion(true)
             }
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            completion(true)
         }
         
         if !notes.isEmpty {

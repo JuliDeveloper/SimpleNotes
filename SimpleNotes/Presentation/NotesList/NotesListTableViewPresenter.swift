@@ -5,6 +5,7 @@ protocol NotesListTableViewPresenterProtocol {
     func fetchData(_ completion: ([Note]) -> Void)
     func delete(note: Note)
     func updateFavoriteState(note: Note, newState: Bool)
+    func getExampleNotes() -> [ExampleNote]
 }
 
 final class NotesListTableViewPresenter: NotesListTableViewPresenterProtocol {
@@ -37,5 +38,9 @@ final class NotesListTableViewPresenter: NotesListTableViewPresenterProtocol {
     
     func updateFavoriteState(note: Note, newState: Bool) {
         storage?.edit(note: note, newIsFavoriteState: newState)
+    }
+    
+    func getExampleNotes() -> [ExampleNote] {
+        return ExampleNote.getExampleNotes()
     }
 }

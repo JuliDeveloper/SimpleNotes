@@ -30,6 +30,9 @@ final class NoteTableViewCell: UITableViewCell {
             let exampleNote = exampleNotes[indexPath.row]
             titleLabel.text = exampleNote.title
             subtitleLabel.text = exampleNote.body
+            if exampleNote.isFavorite == true {
+                backgroundColor = .lightMainColor.withAlphaComponent(0.5)
+            }
         } else {
             let note = notes[indexPath.row]
             titleLabel.text = note.title
