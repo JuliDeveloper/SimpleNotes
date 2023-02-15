@@ -4,7 +4,7 @@ protocol NewNoteViewControllerProtocol: AnyObject {
     var presenter: NewNoteViewPresenterProtocol? { get set }
 }
 
-final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, NewNoteViewControllerProtocol {
+final class NewNoteViewController: UIViewController, NewNoteViewControllerProtocol {
     
     //MARK: - Properties
     private lazy var cancelButton: UIButton = {
@@ -111,7 +111,6 @@ extension NewNoteViewController {
         topStackView.addArrangedSubview(saveButton)
         
         noteTitleTextField.delegate = self
-        noteBodyTextView.delegate = self
         
         saveButton.isEnabled = false
         
@@ -216,5 +215,15 @@ extension NewNoteViewController {
         
         delegate?.reloadData()
         dismiss(animated: true)
+    }
+}
+
+extension NewNoteViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == noteTitleTextField {
+            noteBodyTextView.becomeFirstResponder()
+        }
+        
+        return true
     }
 }
