@@ -19,6 +19,7 @@
 		258AE930299BD790007FDD24 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE92F299BD790007FDD24 /* NoteTableViewCell.swift */; };
 		258AE933299D07C4007FDD24 /* NotesListTableViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE932299D07C4007FDD24 /* NotesListTableViewPresenter.swift */; };
 		258AE939299D0D88007FDD24 /* NewNoteViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE938299D0D88007FDD24 /* NewNoteViewPresenter.swift */; };
+		258AE93C299D3ADB007FDD24 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AE93B299D3ADB007FDD24 /* Extension + UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		258AE92F299BD790007FDD24 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		258AE932299D07C4007FDD24 /* NotesListTableViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListTableViewPresenter.swift; sourceTree = "<group>"; };
 		258AE938299D0D88007FDD24 /* NewNoteViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewPresenter.swift; sourceTree = "<group>"; };
+		258AE93B299D3ADB007FDD24 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				257D9C382996947E00087A9F /* Presentation */,
 				258AE92C299A494F007FDD24 /* Services */,
+				258AE93A299D3ABD007FDD24 /* Extensions */,
 				257D9C362996940B00087A9F /* Resources */,
 				257D9C372996941C00087A9F /* App */,
 			);
@@ -80,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				257D9C2B2996936400087A9F /* Assets.xcassets */,
-				257D9C412998113400087A9F /* Extension + UIColor.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -139,6 +141,15 @@
 				258AE938299D0D88007FDD24 /* NewNoteViewPresenter.swift */,
 			);
 			path = NewNote;
+			sourceTree = "<group>";
+		};
+		258AE93A299D3ABD007FDD24 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				257D9C412998113400087A9F /* Extension + UIColor.swift */,
+				258AE93B299D3ADB007FDD24 /* Extension + UIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				258AE93C299D3ADB007FDD24 /* Extension + UIViewController.swift in Sources */,
 				257D9C3E2997FBA800087A9F /* NewNoteViewController.swift in Sources */,
 				257D9C202996936300087A9F /* AppDelegate.swift in Sources */,
 				257D9C3A2997F3EE00087A9F /* NotesListTableViewController.swift in Sources */,

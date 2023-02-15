@@ -173,7 +173,13 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     }
     
     @objc private func didTapCancel() {
-        dismiss(animated: true)
+        showAlert(
+            title: "Предупреждение",
+            message: "Вы точно хотите отменить редактирование?"
+        ) { [weak self] _ in
+            guard let self = self else { return }
+            self.dismiss(animated: true)
+        }
     }
     
     @objc private func didTapSave() {

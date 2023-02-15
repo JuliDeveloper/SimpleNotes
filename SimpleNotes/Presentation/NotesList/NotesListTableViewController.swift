@@ -85,10 +85,16 @@ extension NotesListTableViewController {
     private func createSwipeAction(at indexPath: IndexPath) -> [UIContextualAction] {
         let note = notes[indexPath.row]
         
-        let actionDelete = UIContextualAction(style: .normal, title: "Delete") { (_, _, _) in
-            self.notes.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.presenter?.delete(note: note)
+        let actionDelete = UIContextualAction(style: .normal, title: "Delete") { [weak self]  (_, _, _) in
+            guard let self = self else { return }
+            self.showAlert(
+                title: "Предупреждение",
+                message: "Вы точно хотите удалить заметку?"
+            ) { _ in
+                self.notes.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.presenter?.delete(note: note)
+            }
         }
         actionDelete.backgroundColor = .red
         actionDelete.image = UIImage(systemName: "trash.fill")
