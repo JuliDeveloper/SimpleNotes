@@ -67,6 +67,7 @@ extension NotesListTableViewController {
     }
     
     private func setupTableView() {
+        tableView.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(
@@ -77,6 +78,9 @@ extension NotesListTableViewController {
     
     private func configNavigationBar() {
         title = "Ваши заметки"
+        navigationController?.navigationBar.barTintColor = .lightMainColor
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewNote))
         navigationController?.navigationBar.tintColor = .mainColor

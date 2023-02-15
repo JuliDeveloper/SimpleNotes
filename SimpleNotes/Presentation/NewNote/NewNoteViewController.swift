@@ -27,6 +27,9 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     
     private lazy var noteTitleTextField: UITextField = {
         let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.textColor = .black
+        textField.tintColor = .mainColor
         textField.placeholder = "Заголовок заметки"
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.mainColor.cgColor
@@ -44,6 +47,10 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     
     private let noteTextView: UITextView = {
         let textView = UITextView()
+        textView.backgroundColor = .white
+        textView.textColor = .black
+        textView.tintColor = .mainColor
+        textView.font = .systemFont(ofSize: 15)
         textView.layer.borderWidth = 0.5
         textView.layer.borderColor = UIColor.mainColor.cgColor
         textView.layer.cornerRadius = 8

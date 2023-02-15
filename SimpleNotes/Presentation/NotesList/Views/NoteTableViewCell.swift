@@ -19,8 +19,9 @@ final class NoteTableViewCell: UITableViewCell {
     }()
     
     func configUI(for cell: UITableViewCell, from notes: [Note], with indexPath: IndexPath) {
-        let note = notes[indexPath.row]
+        backgroundColor = .white
         
+        let note = notes[indexPath.row]
         titleLabel.text = note.title
         subtitleLabel.text = note.body
         
