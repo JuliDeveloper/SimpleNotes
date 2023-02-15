@@ -20,6 +20,7 @@ final class NoteTableViewCell: UITableViewCell {
     
     func configUI(for cell: UITableViewCell, from notes: [Note], with indexPath: IndexPath) {
         backgroundColor = .white
+        selectionStyle = .none
         
         let note = notes[indexPath.row]
         titleLabel.text = note.title
