@@ -11,7 +11,6 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         button.titleLabel?.font = .systemFont(ofSize: 15)
         button.tintColor = .mainColor
         button.addTarget(self, action: #selector(didTapCancel), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -21,8 +20,23 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
         button.titleLabel?.font = .boldSystemFont(ofSize: 15)
         button.tintColor = .mainColor
         button.addTarget(self, action: #selector(didTapSave), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Новая заметка"
+        label.textColor = .black
+        label.font = .boldSystemFont(ofSize: 17)
+        return label
+    }()
+    
+    private let topStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .equalSpacing
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
     
     private lazy var noteTitleTextField: UITextField = {
@@ -74,12 +88,17 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     private func setupViewController() {
         view.backgroundColor = .white
         
+        topStackView.addArrangedSubview(cancelButton)
+        topStackView.addArrangedSubview(titleLabel)
+        topStackView.addArrangedSubview(saveButton)
+        
         noteTitleTextField.delegate = self
         noteTextView.delegate = self
         
         saveButton.isEnabled = false
         
         if note != nil {
+            titleLabel.text = "Редактирование"
             saveButton.isEnabled = true
             noteTitleTextField.text = note?.title
             noteTextView.text = note?.body
@@ -87,33 +106,24 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     }
     
     private func addSubviews() {
-        view.addSubview(cancelButton)
-        view.addSubview(saveButton)
+        view.addSubview(topStackView)
         view.addSubview(noteTitleTextField)
         view.addSubview(noteTextView)
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: 10
-            ),
-            cancelButton.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
+            topStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
                 constant: 16
-            )
-        ])
-        
-        NSLayoutConstraint.activate([
-            saveButton.topAnchor.constraint(
+            ),
+            topStackView.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: 10
             ),
-            saveButton.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -16
-            )
+            topStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant: -16)
         ])
         
         NSLayoutConstraint.activate([
@@ -126,7 +136,7 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
                 constant: -16
             ),
             noteTitleTextField.topAnchor.constraint(
-                equalTo: cancelButton.bottomAnchor,
+                equalTo: topStackView.bottomAnchor,
                 constant: 20
             ),
             noteTitleTextField.heightAnchor.constraint(
