@@ -111,28 +111,6 @@ final class NewNoteViewController: UIViewController, NewNoteViewControllerProtoc
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        moveViewWithKeyboard(notification: notification, keyboardWillShow: true)
-    }
-    
-    @objc func keyboardWillHide(_ notification: NSNotification) {
-       moveViewWithKeyboard(notification: notification, keyboardWillShow: false)
-    }
-    
-    func moveViewWithKeyboard(notification: NSNotification, keyboardWillShow: Bool) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        let keyboardHeight = keyboardSize.height
-        
-        let constant = keyboardWillShow == true ? (-keyboardHeight + 20) : -20
-        
-        NSLayoutConstraint.activate([
-            noteBodyTextView.bottomAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: constant
-            )
-        ])
-    }
 }
 
 //MARK: - Helpers
@@ -216,6 +194,28 @@ extension NewNoteViewController {
                 constant: -20
             )
         ])
+    }
+    
+    private func moveViewWithKeyboard(notification: NSNotification, keyboardWillShow: Bool) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let keyboardHeight = keyboardSize.height
+        
+        let constant = keyboardWillShow == true ? (-keyboardHeight + 20) : -20
+        
+        NSLayoutConstraint.activate([
+            noteBodyTextView.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: constant
+            )
+        ])
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        moveViewWithKeyboard(notification: notification, keyboardWillShow: true)
+    }
+    
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+       moveViewWithKeyboard(notification: notification, keyboardWillShow: false)
     }
     
     @objc private func changeStateSaveButton() {
