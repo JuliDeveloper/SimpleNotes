@@ -33,7 +33,7 @@ class StorageManager {
         }
     }
     
-    func save(noteTitle: String?, noteBody: String?) {
+    func save(noteTitle: String, noteBody: String) {
         let note = Note(context: viewContext)
         note.title = noteTitle
         note.body = noteBody

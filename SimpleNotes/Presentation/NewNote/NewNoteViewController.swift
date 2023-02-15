@@ -1,6 +1,10 @@
 import UIKit
 
-final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+protocol NewNoteViewControllerProtocol: AnyObject {
+    var presenter: NewNoteViewPresenterProtocol? { get set }
+}
+
+final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, NewNoteViewControllerProtocol {
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Отмена", for: .normal)
@@ -49,9 +53,12 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     
     var note: Note?
     var delegate: ReloadDataTableViewControllerDelegate?
+    var presenter: NewNoteViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = NewNoteViewPresenter(view: self)
+        
         setupViewController()
         addSubviews()
         setupConstraints()
@@ -154,13 +161,14 @@ final class NewNoteViewController: UIViewController, UITextViewDelegate, UITextF
     
     @objc private func didTapSave() {
         if note == nil {
-            StorageManager.shared.save(
+            presenter?.save(
                 noteTitle: noteTitleTextField.text ?? "",
                 noteBody: noteTextView.text ?? ""
             )
         } else {
-            StorageManager.shared.edit(
-                note: note ?? Note(), newTitle: noteTitleTextField.text ?? "",
+            presenter?.edit(
+                note: note ?? Note(),
+                newTitle: noteTitleTextField.text ?? "",
                 newBody: noteTextView.text ?? ""
             )
         }
