@@ -25,6 +25,10 @@ final class NoteTableViewCell: UITableViewCell {
         titleLabel.text = note.title
         subtitleLabel.text = note.body
         
+        if note.isFavorite == true {
+            backgroundColor = .lightMainColor.withAlphaComponent(0.5)
+        }
+        
         let stack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
         stack.axis = .vertical
         stack.distribution = .fillProportionally

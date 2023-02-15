@@ -46,6 +46,11 @@ class StorageManager {
         saveContext()
     }
     
+    func edit(note: Note, newIsFavoriteState: Bool) {
+        note.isFavorite = newIsFavoriteState
+        saveContext()
+    }
+    
     func delete(note: Note) {
         viewContext.delete(note)
         saveContext()

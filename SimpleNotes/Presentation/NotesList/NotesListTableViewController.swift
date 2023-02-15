@@ -48,13 +48,9 @@ class NotesListTableViewController: UITableViewController, NotesListTableViewCon
         present(newNoteVC, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let note = notes[indexPath.row]
-        if editingStyle == .delete {
-            notes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            presenter?.delete(note: note)
-        }
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let actions = createSwipeAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: actions)
     }
 }
 
@@ -84,6 +80,33 @@ extension NotesListTableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewNote))
         navigationController?.navigationBar.tintColor = .mainColor
+    }
+    
+    private func createSwipeAction(at indexPath: IndexPath) -> [UIContextualAction] {
+        let note = notes[indexPath.row]
+        
+        let actionDelete = UIContextualAction(style: .normal, title: "Delete") { (_, _, _) in
+            self.notes.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.presenter?.delete(note: note)
+        }
+        actionDelete.backgroundColor = .red
+        actionDelete.image = UIImage(systemName: "trash.fill")
+        
+        let actionFavorite = UIContextualAction(style: .normal, title: "Favorite") { (_, _, completion) in
+            note.isFavorite = !note.isFavorite
+            self.presenter?.updateFavoriteState(note: note, newState: note.isFavorite)
+            self.notes[indexPath.row] = note
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        actionFavorite.backgroundColor = note.isFavorite ? .mainColor : .systemGray
+        actionFavorite.image = note.isFavorite ?
+            UIImage(systemName: "heart.fill") :
+            UIImage(systemName: "heart")
+
+        let actions: [UIContextualAction] = [actionDelete, actionFavorite]
+        return actions
     }
     
     @objc func addNewNote() {

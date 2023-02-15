@@ -4,6 +4,7 @@ protocol NotesListTableViewPresenterProtocol {
     var view: NotesListTableViewControllerProtocol? { get set }
     func fetchData(_ completion: ([Note]) -> Void)
     func delete(note: Note)
+    func updateFavoriteState(note: Note, newState: Bool)
 }
 
 class NotesListTableViewPresenter: NotesListTableViewPresenterProtocol {
@@ -29,5 +30,9 @@ class NotesListTableViewPresenter: NotesListTableViewPresenterProtocol {
     
     func delete(note: Note) {
         storage?.delete(note: note)
+    }
+    
+    func updateFavoriteState(note: Note, newState: Bool) {
+        storage?.edit(note: note, newIsFavoriteState: newState)
     }
 }
