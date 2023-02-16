@@ -3,6 +3,7 @@ import Foundation
 protocol NotesListTableViewPresenterProtocol {
     var view: NotesListTableViewControllerProtocol? { get set }
     func fetchData(_ completion: ([Note]) -> Void)
+    func addExampleNote(exampleTitle: String, exampleBody: String)
     func delete(note: Note)
     func updateFavoriteState(note: Note, newState: Bool)
     func getExampleNotes() -> [ExampleNote]
@@ -30,6 +31,10 @@ final class NotesListTableViewPresenter: NotesListTableViewPresenterProtocol {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func addExampleNote(exampleTitle: String, exampleBody: String) {
+        storage?.save(noteTitle: exampleTitle, noteBody: exampleBody)
     }
     
     func delete(note: Note) {

@@ -26,6 +26,7 @@ final class NotesListTableViewController: UITableViewController, NotesListTableV
         setupTableView()
         configNavigationBar()
         fetchNotes()
+        showExampleNote()
     }
 }
 
@@ -81,6 +82,13 @@ extension NotesListTableViewController {
         presenter?.fetchData { [weak self] notesList in
             guard let self = self else { return }
             self.notes = notesList
+        }
+    }
+    
+    private func showExampleNote() {
+        if notes.isEmpty {
+            presenter?.addExampleNote(exampleTitle: "Пример заметки", exampleBody: "Описание заметки")
+            fetchNotes()
         }
     }
     
