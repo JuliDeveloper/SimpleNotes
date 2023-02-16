@@ -9,9 +9,10 @@ final class NewNoteViewController: UIViewController, NewNoteViewControllerProtoc
     //MARK: - Properties
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Отмена", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 15)
-        button.tintColor = .mainColor
+        button.config(
+            title: "Отмена",
+            font: .systemFont(ofSize: 15)
+        )
         button.addTarget(
             self,
             action: #selector(didTapCancel),
@@ -22,9 +23,10 @@ final class NewNoteViewController: UIViewController, NewNoteViewControllerProtoc
     
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Cохранить", for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
-        button.tintColor = .mainColor
+        button.config(
+            title: "Cохранить",
+            font: .boldSystemFont(ofSize: 15)
+        )
         button.addTarget(
             self,
             action: #selector(didTapSave),
@@ -87,7 +89,6 @@ final class NewNoteViewController: UIViewController, NewNoteViewControllerProtoc
     }()
     
     var note: Note?
-    var exampleNote: ExampleNote?
     var delegate: ReloadDataTableViewControllerDelegate?
     var presenter: NewNoteViewPresenterProtocol?
     
@@ -100,16 +101,32 @@ final class NewNoteViewController: UIViewController, NewNoteViewControllerProtoc
         addSubviews()
         setupConstraints()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(notification:)),
+            name: UIResponder.keyboardWillChangeFrameNotification, object: nil
+        )
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification, object: nil
+        )
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 }
 
@@ -131,9 +148,6 @@ extension NewNoteViewController {
             saveButton.isEnabled = true
             noteTitleTextField.text = note?.title
             noteBodyTextView.text = note?.body
-        } else {
-            noteTitleTextField.text = exampleNote?.title
-            noteBodyTextView.text = exampleNote?.body
         }
     }
     

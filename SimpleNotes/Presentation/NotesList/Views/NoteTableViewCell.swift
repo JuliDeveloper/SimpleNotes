@@ -5,17 +5,19 @@ final class NoteTableViewCell: UITableViewCell {
     //MARK: - Properties
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 17)
-        label.textColor = .black
-        label.numberOfLines = 1
+        label.config(
+            fontText: .systemFont(ofSize: 17),
+            color: .black
+        )
         return label
     }()
     
     private let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12)
-        label.textColor = .gray
-        label.numberOfLines = 1
+        label.config(
+            fontText: .systemFont(ofSize: 12),
+            color: .gray
+        )
         return label
     }()
     
