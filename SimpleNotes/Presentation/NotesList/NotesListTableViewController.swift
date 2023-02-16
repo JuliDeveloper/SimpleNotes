@@ -14,7 +14,6 @@ protocol ReloadDataTableViewControllerDelegate {
 final class NotesListTableViewController: UITableViewController, NotesListTableViewControllerProtocol {
     
     //MARK: - Properties
-    private var exampleNotes: [ExampleNote] = []
     private var notes: [Note] = []
     var presenter: NotesListTableViewPresenterProtocol?
     
@@ -33,11 +32,7 @@ final class NotesListTableViewController: UITableViewController, NotesListTableV
 //MARK: - UITableViewDataSource and UITableViewDelegate
 extension NotesListTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if notes.isEmpty {
-            return exampleNotes.count
-        } else {
-            return notes.count
-        }
+        notes.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,13 +52,8 @@ extension NotesListTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newNoteVC = NewNoteViewController()
         
-        if notes.isEmpty {
-            let exampleNote = exampleNotes[indexPath.row]
-            newNoteVC.exampleNote = exampleNote
-        } else {
-            let note = notes[indexPath.row]
-            newNoteVC.note = note
-        }
+        let note = notes[indexPath.row]
+        newNoteVC.note = note
         
         newNoteVC.modalPresentationStyle = .fullScreen
         newNoteVC.delegate = self
@@ -100,12 +90,6 @@ extension NotesListTableViewController {
             NoteTableViewCell.self,
             forCellReuseIdentifier: cellIdentifier
         )
-        
-        exampleNotes = presenter?.getExampleNotes() ?? [ExampleNote(
-            title: "",
-            body: "",
-            isFavorite: false
-        )]
     }
     
     private func configNavigationBar() {
@@ -134,20 +118,10 @@ extension NotesListTableViewController {
                 title: "Предупреждение",
                 message: "Вы точно хотите удалить заметку?"
             ) { _ in
-                if !self.notes.isEmpty {
-                    let note = self.notes[indexPath.row]
-                    self.presenter?.delete(note: note)
-                    if self.notes.count == 1 {
-                        self.notes.remove(at: indexPath.row)
-                        self.tableView.reloadData()
-                    } else {
-                        self.notes.remove(at: indexPath.row)
-                        self.tableView.deleteRows(at: [indexPath], with: .none)
-                    }
-                } else {
-                    self.exampleNotes.remove(at: indexPath.row)
-                    self.tableView.deleteRows(at: [indexPath], with: .none)
-                }
+                let note = self.notes[indexPath.row]
+                self.presenter?.delete(note: note)
+                self.notes.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .none)
             }
         }
         actionDelete.backgroundColor = .red
@@ -158,40 +132,24 @@ extension NotesListTableViewController {
             title: "Favorite"
         ) { [weak self] (_, _, completion) in
             guard let self = self else { return }
-            if !self.notes.isEmpty {
-                let note = self.notes[indexPath.row]
-                note.isFavorite = !note.isFavorite
-                self.presenter?.updateFavoriteState(
-                    note: note,
-                    newState: note.isFavorite
-                )
-                self.notes[indexPath.row] = note
-            } else {
-                var exampleNote = self.exampleNotes[indexPath.row]
-                exampleNote.isFavorite = !exampleNote.isFavorite
-                self.exampleNotes[indexPath.row] = exampleNote
-            }
+            let note = self.notes[indexPath.row]
+            note.isFavorite = !note.isFavorite
+            self.presenter?.updateFavoriteState(
+                note: note,
+                newState: note.isFavorite
+            )
+            self.notes[indexPath.row] = note
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
             completion(true)
         }
         
-        if !notes.isEmpty {
-            let note = self.notes[indexPath.row]
-            actionFavorite.backgroundColor = note.isFavorite ?
-                .mainColor :
-                .systemGray
-            actionFavorite.image = note.isFavorite ?
-                UIImage(systemName: "heart.fill") :
-                UIImage(systemName: "heart")
-        } else {
-            let exampleNote = exampleNotes[indexPath.row]
-            actionFavorite.backgroundColor = exampleNote.isFavorite ?
-                .mainColor :
-                .systemGray
-            actionFavorite.image = exampleNote.isFavorite ?
-                UIImage(systemName: "heart.fill") :
-                UIImage(systemName: "heart")
-        }
+        let note = self.notes[indexPath.row]
+        actionFavorite.backgroundColor = note.isFavorite ?
+            .mainColor :
+            .systemGray
+        actionFavorite.image = note.isFavorite ?
+        UIImage(systemName: "heart.fill") :
+        UIImage(systemName: "heart")
 
         let actions: [UIContextualAction] = [actionDelete, actionFavorite]
         return actions

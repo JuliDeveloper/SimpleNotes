@@ -24,22 +24,11 @@ final class NoteTableViewCell: UITableViewCell {
         backgroundColor = .white
         selectionStyle = .none
         
-        let exampleNotes = ExampleNote.getExampleNotes()
-        
-        if notes.isEmpty {
-            let exampleNote = exampleNotes[indexPath.row]
-            titleLabel.text = exampleNote.title
-            subtitleLabel.text = exampleNote.body
-            if exampleNote.isFavorite == true {
-                backgroundColor = .lightMainColor.withAlphaComponent(0.5)
-            }
-        } else {
-            let note = notes[indexPath.row]
-            titleLabel.text = note.title
-            subtitleLabel.text = note.body
-            if note.isFavorite == true {
-                backgroundColor = .lightMainColor.withAlphaComponent(0.5)
-            }
+        let note = notes[indexPath.row]
+        titleLabel.text = note.title
+        subtitleLabel.text = note.body
+        if note.isFavorite == true {
+            backgroundColor = .lightMainColor.withAlphaComponent(0.5)
         }
         
         let stack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
