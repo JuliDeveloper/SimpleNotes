@@ -199,13 +199,11 @@ extension NewNoteViewController {
     private func moveViewWithKeyboard(notification: NSNotification, keyboardWillShow: Bool) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         let keyboardHeight = keyboardSize.height
-        
-        let constant = keyboardWillShow == true ? (-keyboardHeight + 20) : -20
-        
+                        
         NSLayoutConstraint.activate([
             noteBodyTextView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: constant
+                constant: (-keyboardHeight + 20)
             )
         ])
     }
